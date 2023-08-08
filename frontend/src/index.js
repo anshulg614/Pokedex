@@ -1,6 +1,7 @@
-// index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Pokemon from './Pokemon';
+import App from './components/app'; // Import your App component
+import Pokemon from './components/Pokemon';
+import './index.css'
 
-ReactDOM.render(<Pokemon />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
