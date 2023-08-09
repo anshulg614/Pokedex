@@ -38,7 +38,7 @@ app.get("/api/pokemon/:id", async (req, res) => {
       abilities: pokemonData.abilities.map((ability) => ability.ability.name),
       order: pokemonData.order,
       id: pokemonData.id,
-      base_experience: pokemonData.base_experience,
+      baseExp: pokemonData.base_experience,
       forms: pokemonData.forms,
       height: pokemonData.height,
       held_items: pokemonData.held_items,
@@ -47,7 +47,10 @@ app.get("/api/pokemon/:id", async (req, res) => {
       stats: pokemonData.stats,
       types: pokemonData.types,
       color: speciesData.color,
-      evolutions: speciesData.evolution_chain
+      evolutions: speciesData.evolution_chain,
+      captureRate: speciesData.capture_rate,
+      generation: speciesData.generation,
+      habitat: speciesData.habitat,
     };
 
     res.json(pokemonInfo);

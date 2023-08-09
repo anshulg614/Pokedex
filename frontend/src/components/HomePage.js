@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Card from "./Card";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from "react-router-dom";
 import "./homepage.css";
 
 const HomePage = () => {
   const [firstFourPokemonIds, setFirstFourPokemonIds] = useState([1, 2, 3, 4]);
   const [pokemons, setPokemons] = useState([]); // Initialize an empty array for storing Pokémon data
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const fetchPokemonData = async (pokemonId) => {
     try {
@@ -43,10 +43,11 @@ const HomePage = () => {
     setFirstFourPokemonIds(decrementedIds); // Update the IDs for the previous batch
   };
 
-  useEffect(() => {
-    fetchInitialPokemons(firstFourPokemonIds); // Fetch and store data for the initial four Pokémon
-  }, []);
-
+  const handleCard = (pokemon) => {
+    console.log("nimoneyyyy ");
+    const pokemonName = pokemon.name;
+    navigate(`/pokemon/${pokemonName.trim().toLowerCase()}`);
+  };
 
   useEffect(() => {
     fetchInitialPokemons(firstFourPokemonIds); // Fetch and store data for the initial four Pokémon
@@ -54,10 +55,12 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="card-grid">
         {pokemons.map((pokemon) => (
-          <Card key={pokemon.id} pokemon={pokemon} />
+          <div onClick={() => handleCard(pokemon)}>
+            <Card pokemon={pokemon}  />
+          </div>
         ))}
         <div className="button-container">
           <button className="next-button" onClick={handleNextButtonClick}>

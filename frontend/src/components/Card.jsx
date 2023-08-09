@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = ({ pokemon }) => {
+const Card = ({ pokemon, onClick }) => {
   const { name, sprite, moves, abilities } = pokemon;
 
   return (
