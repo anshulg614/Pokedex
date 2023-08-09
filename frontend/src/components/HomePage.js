@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Card from "./Card";
+import { useNavigate } from 'react-router-dom'; 
 import "./homepage.css";
 
 const HomePage = () => {
   const [firstFourPokemonIds, setFirstFourPokemonIds] = useState([1, 2, 3, 4]);
   const [pokemons, setPokemons] = useState([]); // Initialize an empty array for storing Pokémon data
-  const [searchInput, setSearchInput] = useState("");
-  const [hasClickedNext, setHasClickedNext] = useState(false);
+
+  const navigate = useNavigate(); 
 
   const fetchPokemonData = async (pokemonId) => {
     try {
@@ -32,7 +33,6 @@ const HomePage = () => {
     );
     fetchInitialPokemons(incrementedIds);
     setFirstFourPokemonIds(incrementedIds); // Update the IDs for the next batch
-    setHasClickedNext(true); // Update the state to indicate that "Next" has been clicked
   };
 
   const handleBackButtonClick = () => {
@@ -47,24 +47,14 @@ const HomePage = () => {
     fetchInitialPokemons(firstFourPokemonIds); // Fetch and store data for the initial four Pokémon
   }, []);
 
-  const searchPokemon = () => {
-    if (searchInput.trim() !== "") {
-      fetchPokemonData(searchInput.toLowerCase());
-    }
-  };
 
   useEffect(() => {
-    searchPokemon();
     fetchInitialPokemons(firstFourPokemonIds); // Fetch and store data for the initial four Pokémon
   }, []);
 
   return (
     <div>
-      <Navbar
-        onSearch={searchPokemon}
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-      />
+      <Navbar/>
       <div className="card-grid">
         {pokemons.map((pokemon) => (
           <Card key={pokemon.id} pokemon={pokemon} />

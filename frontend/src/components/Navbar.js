@@ -1,14 +1,23 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useHistory from react-router-dom
-import './NavStyle.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./NavStyle.css";
 
-const Navbar = ({ onSearch, searchInput, setSearchInput }) => {
-  const navigate = useNavigate(); 
+const Navbar = () => {
+  const navigate = useNavigate();
 
-  // Function to navigate to the home route
+  const [searchInput, setSearchInput] = useState(""); // State to manage input value
+  const [hasSearchedPokemon, setHasSearchedPokemon] = useState(false); // State to track if a valid Pokémon has been searched
+
   const navigateToHome = () => {
-    navigate('/');
+    navigate("/");
   };
+
+  const handleSearch = () => {
+    if (searchInput.trim() !== "") {
+      navigate(`/pokemon/${searchInput.trim().toLowerCase()}`);
+    }
+  };
+  
 
   return (
     <div className="navbar">
@@ -21,14 +30,17 @@ const Navbar = ({ onSearch, searchInput, setSearchInput }) => {
             onChange={(e) => setSearchInput(e.target.value)}
             className="search-button"
           />
-          <button className="nav-button" onClick={() => onSearch()}>Search</button>
+          <button className="nav-button" onClick={handleSearch}>
+            Search
+          </button>
         </div>
         <div className="center">
           <h1 onClick={navigateToHome}>Pokedex</h1>
         </div>
         <div className="right">
-          {/* Use the navigateToHome function as onClick handler */}
-          <button className="nav-button" onClick={navigateToHome}>Home</button>
+          <button className="nav-button" onClick={navigateToHome}>
+            Home
+          </button>
           <button className="nav-button">Login</button>
         </div>
       </div>

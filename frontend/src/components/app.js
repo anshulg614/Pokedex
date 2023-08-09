@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/Pokemon" element={<Pokemon />} />
+        <Route path="/pokemon/:pokemonName" element={<Pokemon />} />
       </Routes>
     </Router>
   );
