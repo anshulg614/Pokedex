@@ -34,3 +34,7 @@
     margin: auto;
     margin-right: 20px;
   }
+
+  .cards {
+    cursor: pointer;
+  }

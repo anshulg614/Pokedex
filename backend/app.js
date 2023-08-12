@@ -27,13 +27,13 @@ app.get("/api/pokemon/:id", async (req, res) => {
     );
     const speciesData = speciesResponse.data;
 
-    // Log the keys of the speciesData object (egg group information)
-    console.log("Keys of speciesData:", Object.keys(speciesData));
+    console.log("Keys of speciesData: ", Object.keys(speciesData));
 
     // Extract the required information from the response and send it to the frontend
     const pokemonInfo = {
       name: pokemonData.name,
       sprite: pokemonData.sprites.front_default,
+      shiny: pokemonData.sprites.front_shiny,
       moves: pokemonData.moves.slice(0, 4).map((move) => move.move.name),
       abilities: pokemonData.abilities.map((ability) => ability.ability.name),
       order: pokemonData.order,
@@ -51,6 +51,27 @@ app.get("/api/pokemon/:id", async (req, res) => {
       captureRate: speciesData.capture_rate,
       generation: speciesData.generation,
       habitat: speciesData.habitat,
+      // Extracting only the 'name' from properties in the format { name, url }
+      gender_rate: speciesData.gender_rate,
+      base_happiness: speciesData.base_happiness,
+      is_legendary: speciesData.is_legendary,
+      is_mythical: speciesData.is_mythical,
+      hatch_counter: speciesData.hatch_counter,
+      forms_switchable: speciesData.forms_switchable,
+      growth_rate: speciesData.growth_rate.name, // Extracting 'name' property
+      pokedex_numbers: speciesData.pokedex_numbers.map(
+        (entry) => entry.entry_number
+      ), // Extracting 'entry_number'
+      egg_groups: speciesData.egg_groups.map((group) => group.name), // Extracting 'name'
+      shape: speciesData.shape.name, // Extracting 'name'
+      names: speciesData.names.map((entry) => entry.name), // Extracting 'name'
+      flavor_text_entries: speciesData.flavor_text_entries.map(
+        (entry) => entry.flavor_text
+      ), // Extracting 'flavor_text'
+      form_descriptions: speciesData.form_descriptions.map(
+        (entry) => entry.description
+      ), // Extracting 'description'
+      genera: speciesData.genera.map((entry) => entry.genus), // Extracting 'genus'
     };
 
     res.json(pokemonInfo);

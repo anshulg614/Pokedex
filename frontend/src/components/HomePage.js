@@ -58,7 +58,7 @@ const HomePage = () => {
       <Navbar />
       <div className="card-grid">
         {pokemons.map((pokemon) => (
-          <div onClick={() => handleCard(pokemon)}>
+          <div className="cards" onClick={() => handleCard(pokemon)}>
             <Card pokemon={pokemon}  />
           </div>
         ))}
