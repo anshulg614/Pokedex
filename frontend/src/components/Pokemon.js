@@ -75,7 +75,6 @@ const Pokemon = () => {
                   <p>Is Mythical: {pokemon.is_mythical ? "Yes" : "No"}</p>
                   <p>Hatch Counter: {pokemon.hatch_counter}</p>
                   <p>Growth Rate: {pokemon.growth_rate}</p>
-                  <p>Pokedex Numbers: {pokemon.pokedex_numbers}</p>
                   <p>Egg Groups: {pokemon.egg_groups}</p>
                   <p>Shape: {pokemon.shape}</p>
                   <h3 className="ShinyHeader">
