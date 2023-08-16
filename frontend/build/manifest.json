@@ -1,0 +1,17 @@
+{
+    "name": "Pokedex App",
+    "short_name": "Pokedex",
+    "description": "Your description here",
+    "icons": [
+      {
+        "src": "pokeball-favicon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1f1d1d"
+  }
+  

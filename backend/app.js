@@ -1,7 +1,11 @@
 const express = require("express");
+const path = require("path");
 const axios = require("axios");
 const app = express();
-const port = 3001; // Choose a port for your server
+const port = process.env.PORT || 3001; // Use the provided PORT environment variable, or default to 3001
+
+// Serve static files from the React build directory
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 // Define a route to fetch Pokemon data by ID
 
@@ -78,6 +82,11 @@ app.get("/api/pokemon/:id", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch Pokemon data" });
   }
+});
+
+// Define a route to handle all other requests
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build/index.html"));
 });
 
 app.listen(port, () => {

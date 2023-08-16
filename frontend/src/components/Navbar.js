@@ -67,7 +67,7 @@ const Navbar = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="search-button"
+            className="search-button inputs"
           />
           <button className="nav-button" onClick={handleSearch}>
             Search
